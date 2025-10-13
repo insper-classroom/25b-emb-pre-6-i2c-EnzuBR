@@ -30,6 +30,10 @@ void i2c_task(void *p) {
 
     // TODO
     // Configure o acc para operar em 4G
+    uint8_t buf_accel[2];
+    buf_accel[0] = MPUREG_ACCEL_CONFIG;
+    buf_accel[1] = 0x08;
+    i2c_write_blocking(i2c_default, I2C_CHIP_ADDRESS, buf_accel, 2, false);
 
     while (1) {
         vTaskDelay(pdMS_TO_TICKS(200));
